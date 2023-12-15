@@ -1,0 +1,9 @@
+logging:
+  level:
+    org:
+      springframework: trace
+
+currency-service:
+  url: http://dev.building.springboot
+  username: user
+  key: key
