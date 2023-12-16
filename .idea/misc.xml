@@ -4,6 +4,7 @@
   <component name="FrameworkDetectionExcludesConfiguration">
     <file type="web" url="file://$PROJECT_DIR$/springboot2" />
     <file type="web" url="file://$PROJECT_DIR$/springbootJPA" />
+    <file type="web" url="file://$PROJECT_DIR$/springbootWebApp" />
   </component>
   <component name="ProjectRootManager" version="2" project-jdk-name="corretto-21" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/out" />
