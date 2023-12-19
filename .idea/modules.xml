@@ -4,6 +4,8 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/LearningSpringBoot1.iml" filepath="$PROJECT_DIR$/.idea/LearningSpringBoot1.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/springboot.main.iml" filepath="$PROJECT_DIR$/.idea/modules/springboot.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/springbootJPA.main.iml" filepath="$PROJECT_DIR$/.idea/modules/springbootJPA.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/springbootWebApp.main.iml" filepath="$PROJECT_DIR$/.idea/modules/springbootWebApp.main.iml" />
     </modules>
   </component>
 </project>

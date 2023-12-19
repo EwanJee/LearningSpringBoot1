@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <span th:text="${name}"></span>
+    <hr>
+    <div th:each=" todo : ${todos}">
+        <p><span th:text="*{todo.id}"></span></p>
+        <p><span th:text="*{todo.userName}"></span></p>
+        <p><span th:text="*{todo.description}"></span></p>
+        <p><span th:text="*{todo.targetDate}"></span></p>
+    </div>
+    <a th:href="@{/add-todo}">Add Todo</a>
+</body>
+</html>

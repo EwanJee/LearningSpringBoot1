@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <form >
+    <div>
+        <p>Your name : <span th:text="${name}"></span></p>
+        <p>Your Password : <span th:text="${password}"></span></p>
+    </div>
+
+        <a th:href="@{/list-todos}">Manage</a>
+    </form>
+
+</body>
+</html>
