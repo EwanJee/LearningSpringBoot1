@@ -1,11 +1,13 @@
 package com.building.springbootWebApp.todo;
 
+import jakarta.validation.Valid;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Predicate;
 
 @Service
 public class TodoService {
@@ -13,9 +15,9 @@ public class TodoService {
     static {
         todos.add(new Todo(1,"user","Learn AWS",
                 LocalDate.now().plusYears(1),false));
-        todos.add(new Todo(2,"use2","Learn Azure",
+        todos.add(new Todo(2,"user","Learn Azure",
                 LocalDate.now().plusYears(1),false));
-        todos.add(new Todo(3,"user3","Learn DevOps",
+        todos.add(new Todo(3,"user2","Learn DevOps",
                 LocalDate.now().plusYears(1),false));
     }
     public List<Todo> findByUsername(String username){
@@ -26,5 +28,27 @@ public class TodoService {
     public void addTodo(String username, String description, LocalDate localDate, boolean done){
         todos.add(new Todo(4,username,description,
                 localDate,done));
+    }
+    public void deleteById(int id){
+        // todo -> todo.getId() == id
+        Predicate<Todo> predicate
+                = (todo) -> todo.getId() == id;
+
+        todos.removeIf(predicate);
+    }
+
+    public Todo findById(int id) {
+        Predicate<Todo> predicate
+                = (todo) -> todo.getId() == id;
+        return todos.stream()
+                .filter(predicate)
+                .findFirst()
+                .get();
+    }
+
+    public void update(@Valid Todo todo) {
+        deleteById(todo.getId());
+        todo.setUserName("user");
+        todos.add(todo);
     }
 }

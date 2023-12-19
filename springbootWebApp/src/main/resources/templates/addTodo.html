@@ -10,6 +10,7 @@
 <hr>
 <form th:object="${todo}" method="post">
   Description: <input type="text" th:field="*{description}" name="description" required>
+  <input type="hidden" path="targetDate" th:field="*{targetDate}">
   <input type="submit" value="ADD">
   <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
 

@@ -5,14 +5,30 @@
     <title>Title</title>
 </head>
 <body>
+<form th:each=" todo : ${todos}">
     <span th:text="${name}"></span>
     <hr>
-    <div th:each=" todo : ${todos}">
-        <p><span th:text="*{todo.id}"></span></p>
-        <p><span th:text="*{todo.userName}"></span></p>
-        <p><span th:text="*{todo.description}"></span></p>
-        <p><span th:text="*{todo.targetDate}"></span></p>
-    </div>
+    <table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Username</th>
+            <th>Description</th>
+            <th>Date</th>
+            <th>Delete</th>
+            <th>Update</th>
+        </tr>
+    </thead>
+        <tbody>
+        <td><span th:text="*{todo.id}"></span></td>
+        <td><span th:text="*{todo.userName}"></span></td>
+        <td><span th:text="*{todo.description}"></span></td>
+        <td><span th:text="*{todo.targetDate}"></span></td>
+        <td><a th:href="@{/delete-todo/{id}(id=*{todo.id})}">Delete</a></td>
+        <td><a th:href="@{/update-todo/{id}(id=*{todo.id})}">Update</a></td>
+        </tbody>
+    </table>
     <a th:href="@{/add-todo}">Add Todo</a>
+    </form>
 </body>
 </html>
