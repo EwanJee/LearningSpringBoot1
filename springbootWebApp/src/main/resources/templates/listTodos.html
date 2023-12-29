@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
 <body>
 <form th:each=" todo : ${todos}">
     <span th:text="${name}"></span>
@@ -28,7 +25,8 @@
         <td><a th:href="@{/update-todo/{id}(id=*{todo.id})}">Update</a></td>
         </tbody>
     </table>
-    <a th:href="@{/add-todo}">Add Todo</a>
-    </form>
+</form>
+<hr>
+<a th:href="@{/add-todo}">Add Todo</a>
 </body>
 </html>

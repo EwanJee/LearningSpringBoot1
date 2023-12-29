@@ -21,9 +21,11 @@ public class TodoService {
                 LocalDate.now().plusYears(1),false));
     }
     public List<Todo> findByUsername(String username){
-        return todos.stream()
+        /*return todos.stream()
                 .filter(x -> Objects.equals(x.getUserName(), username))
-                .toList();
+                .toList();*/
+        Predicate<? super Todo> predicate = todo -> todo.getUserName().equalsIgnoreCase(username);
+        return todos.stream().filter(predicate).toList();
     }
     public void addTodo(String username, String description, LocalDate localDate, boolean done){
         todos.add(new Todo(4,username,description,

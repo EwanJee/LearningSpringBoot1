@@ -1,8 +1,9 @@
 package com.building.springbootWebApp.todo;
 
 import jakarta.validation.Valid;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
@@ -21,10 +22,17 @@ public class TodoController {
 
     @GetMapping("/list-todos")
     public String listAllTodos(ModelMap modelMap){
-        List<Todo> todos = todoService.findByUsername("user");
+        String username = getLoggedUsername(modelMap);
+        List<Todo> todos = todoService.findByUsername(username);
         modelMap.addAttribute("todos",todos);
         return "listTodos";
     }
+
+    private String getLoggedUsername(ModelMap modelMap) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return authentication.getName();
+    }
+
     @GetMapping("/add-todo")
     public String showNewTodo(ModelMap modelMap){
         modelMap.addAttribute("todo",new Todo());
@@ -50,10 +58,12 @@ public class TodoController {
         return "addTodo";
     }
     @PostMapping("/update-todo/{id}")
-    public String updateTodo(@Valid @ModelAttribute("todo") Todo todo, BindingResult result){
+    public String updateTodo(@Valid @ModelAttribute("todo") Todo todo, BindingResult result, ModelMap modelMap){
         if(result.hasErrors()){
             return "addTodo";
         }
+        String username = getLoggedUsername(modelMap);
+        todo.setUserName(username);
         todoService.update(todo);
         return "redirect:/list-todos";
     }

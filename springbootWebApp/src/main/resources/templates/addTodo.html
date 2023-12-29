@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Title</title>
-</head>
+<th:block th:replace="fragments/header :: headerFragment"></th:block>
 <body>
   <h1>Enter Todo Details</h1>
 <hr>
 <form th:object="${todo}" method="post">
+
+  <fieldset>
   Description: <input type="text" th:field="*{description}" name="description" required>
   <input type="hidden" path="targetDate" th:field="*{targetDate}">
-  <input type="submit" value="ADD">
   <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></p>
+  </fieldset>
+
+
+  <input type="submit" value="ADD">
 
 </form>
 </body>
