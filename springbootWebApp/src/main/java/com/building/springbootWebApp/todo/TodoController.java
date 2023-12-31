@@ -39,11 +39,13 @@ public class TodoController {
         return "addTodo";
     }
     @PostMapping("/add-todo")
-    public String addNewTodo(@Valid @ModelAttribute("todo")Todo todo, BindingResult result){
+    public String addNewTodo(@Valid @ModelAttribute("todo")Todo todo, BindingResult result, ModelMap modelMap){
         if(result.hasErrors()){
             return "addTodo";
         }
-        todoService.addTodo("user",todo.getDescription(), LocalDate.now(), false);
+        String username = getLoggedUsername(modelMap);
+        todo.setUserName(username);
+        todoService.addTodo("user",todo.getDescription(), LocalDate.now(), todo.isDone());
         return "redirect:/list-todos";
     }
     @GetMapping("/delete-todo/{id}")
