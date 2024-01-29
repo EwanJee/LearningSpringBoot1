@@ -1,9 +1,11 @@
 package com.learning.webservices.helloworld;
 
+import com.learning.webservices.versioning.PersonV1;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Locale;
@@ -23,6 +25,16 @@ public class HelloWorldController {
     @GetMapping("/hello-world")
     public String helloWorld(){
         return "Hello World";
+    }
+
+    @GetMapping("/hello-world-bean")
+    public String helloWorldBean(){
+        return "Hello World Bean";
+    }
+
+    @GetMapping("/hello/{name}")
+    public PersonV1 helloName(@PathVariable("name")String name){
+        return new PersonV1(name);
     }
 
 

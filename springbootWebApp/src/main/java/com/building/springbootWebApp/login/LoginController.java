@@ -1,8 +1,6 @@
 package com.building.springbootWebApp.login;
 
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,15 +31,16 @@ public class LoginController {
      */
     @GetMapping("/")
     public String toIndex(ModelMap modelMap){
-        modelMap.put("name",getLoggedInUsername());
+//        modelMap.put("name",getLoggedInUsername());
+        modelMap.put("name","user");
         return "welcome";
     }
 
-    private String getLoggedInUsername(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        return authentication.getName();
-
-    }
+//    private String getLoggedInUsername(){
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        return authentication.getName();
+//
+//    }
 
     /*@PostMapping("/login")
     public String toWelcome(@RequestParam String name, @RequestParam String password, ModelMap modelMap) {
