@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class QuerydslApplication
 
 fun main(args: Array<String>) {
-	runApplication<QuerydslApplication>(*args)
+    runApplication<QuerydslApplication>(*args)
 }
