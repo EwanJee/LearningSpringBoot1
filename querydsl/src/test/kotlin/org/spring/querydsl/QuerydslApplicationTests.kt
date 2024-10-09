@@ -20,21 +20,8 @@ class QuerydslApplicationTests {
     lateinit var queryFactory: JPAQueryFactory
 
     @BeforeEach
-    fun setup()  {
+    fun setup() {
         queryFactory = JPAQueryFactory(em)
-    }
-
-    @Test
-    fun insetTest() {
-        // given
-        val member = Member("member1")
-        em.persist(member)
-
-        // when
-        val findMember = em.find(Member::class.java, member.id)
-
-        // then
-        assert(findMember == member)
     }
 
     @Test
@@ -53,5 +40,47 @@ class QuerydslApplicationTests {
 
         // then
         assert(findMember == member1)
+    }
+
+    @Test
+    fun search() {
+        // given
+        val member1 = Member("member1")
+        em.persist(member1)
+
+        // when
+        val findMember =
+            queryFactory
+                .selectFrom(member)
+                .where(
+                    member.username
+                        .eq("member1")
+                        .or(member.username.eq("member2")),
+                ).fetchOne()
+
+        // then
+        assert(findMember == member1)
+    }
+
+    @Test
+    fun sort() {
+        // given
+        val member1 = Member("member1")
+        val member2 = Member("member2")
+        val member3 = Member("member3")
+        em.persist(member1)
+        em.persist(member2)
+        em.persist(member3)
+
+        // when
+        val members: List<Member> =
+            queryFactory
+                .selectFrom(member)
+                .where(member.username.eq("member1"))
+                .orderBy(member.username.desc().nullsLast())
+                .fetch()
+
+        // then
+        assert(members[0] == member1)
     }
 }
