@@ -1,4 +1,4 @@
-package org.spring.querydsl
+package org.spring.querydsl.dto
 
 import com.querydsl.core.types.Projections
 import com.querydsl.jpa.impl.JPAQueryFactory
@@ -7,7 +7,6 @@ import jakarta.persistence.PersistenceContext
 import jakarta.transaction.Transactional
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.spring.querydsl.dto.MemberDto
 import org.spring.querydsl.entity.Member
 import org.spring.querydsl.entity.QMember.member
 import org.spring.querydsl.entity.Team
